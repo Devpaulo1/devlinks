@@ -53,7 +53,8 @@ src/
     └── icons.jsx           # ícones SVG
 public/
 └── img/
-    ├── avatar.png
+    ├── avatar.jpg
+    ├── avatar-light.png
     ├── bg-desktop.png
     ├── bg-desktop-light.png
     ├── bg-mobile.png
@@ -114,7 +115,7 @@ as URLs definitivas forem definidas.
 `rel="noopener noreferrer"` quando o `href` começa com `http://` ou `https://`.
 
 O rodapé contém o texto definido pelo responsável do projeto:
-`Feito com ♥ pela Rocketseat`, com link para o site da Rocketseat.
+`Feito com ♥ pela dev.paulo1`, com link para o GitHub do autor.
 
 ## Tema
 

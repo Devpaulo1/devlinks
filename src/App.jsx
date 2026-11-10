@@ -72,8 +72,8 @@ function App() {
     <div className="app mx-auto w-full max-w-[588px] px-6 pt-14">
       <main>
         <Profile
-          avatarSrc={theme === 'light' ? '/img/avatar-light.png' : '/img/avatar.png'}
-          name="@seu.perfil"
+          avatarSrc={theme === 'light' ? '/img/avatar-light.png' : '/img/avatar.jpg'}
+          name="@dev.paulo1"
         />
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
         <nav aria-label="Links principais">
@@ -95,11 +95,11 @@ function App() {
         pela{' '}
         <a
           className="footer__link rounded-xs no-underline outline-offset-2 outline-text hover:underline focus-visible:outline-2 focus-visible:outline-text"
-          href="https://rocketseat.com.br/"
+          href="https://github.com/Devpaulo1"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Rocketseat
+          dev.paulo1
         </a>
       </footer>
     </div>
