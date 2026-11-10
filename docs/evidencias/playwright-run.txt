@@ -1,0 +1,22 @@
+Playwright - evidencia de execucao de testes E2E
+
+Data: 2026-11-10 16:58:40 -03:00
+Comando: npm run test:e2e
+Playwright: Version 1.65.0
+Node: v24.13.1
+Navegador: Chrome instalado (channel: chrome)
+Viewports: 1440x1024 (desktop) e 360x800 (mobile)
+Arquivo de testes: tests/devlinks.spec.js
+
+---- SAIDA DO TERMINAL ----
+
+Running 6 tests using 2 workers
+
+  ok 2 [mobile] › tests\devlinks.spec.js:17:1 › carrega a página sem erros e sem rolagem horizontal (7.2s)
+  ok 1 [desktop] › tests\devlinks.spec.js:17:1 › carrega a página sem erros e sem rolagem horizontal (11.4s)
+  ok 3 [mobile] › tests\devlinks.spec.js:44:1 › todos os links e redes sociais apontam para os destinos corretos (6.8s)
+  ok 4 [desktop] › tests\devlinks.spec.js:44:1 › todos os links e redes sociais apontam para os destinos corretos (8.8s)
+  ok 5 [mobile] › tests\devlinks.spec.js:71:1 › alterna o tema e mantém a preferência após recarregar (8.5s)
+  ok 6 [desktop] › tests\devlinks.spec.js:71:1 › alterna o tema e mantém a preferência após recarregar (5.9s)
+
+  6 passed (40.5s)

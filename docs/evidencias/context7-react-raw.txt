@@ -1,0 +1,247 @@
+Context7 - evidencia de consulta de documentacao
+
+Data da consulta: 2026-11-10 16:54:57 -03:00
+Biblioteca: /reactjs/react.dev (React - documentacao oficial)
+Topico: useState, useEffect e localStorage
+Endpoint: https://context7.com/api/v1/reactjs/react.dev?type=txt&topic=useState%20useEffect%20localStorage&tokens=1200
+Status HTTP: 200
+
+---- INICIO DA RESPOSTA BRUTA ----
+
+### Store widget DOM node in state inside useEffect
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/reference/react-dom/createPortal.md
+
+Instantiate the third-party widget in an effect and update the state variable with the external DOM node returned by the widget.
+
+```javascript
+useEffect(() => {
+  if (mapRef.current === null) {
+    const map = createMapWidget(containerRef.current);
+    mapRef.current = map;
+    const popupDiv = addPopupToMapWidget(map);
+    setPopupContainer(popupDiv);
+  }
+}, []);
+```
+
+--------------------------------
+
+### Update time safely with useState and useEffect
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/reference/eslint-plugin-react-hooks/lints/purity.md
+
+Moves impure time updates outside the render phase into an initial state function and an interval within useEffect.
+
+```javascript
+function Clock() {
+  const [time, setTime] = useState(() => Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(Date.now());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <div>Current time: {time}</div>;
+}
+```
+
+--------------------------------
+
+### Add state with useState in ImageGallery
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/reference/react/hooks.md
+
+Declares a state variable with useState so a component can remember information like a selected image index. Use it when a component needs state it can update directly.
+
+```js
+function ImageGallery() {
+  const [index, setIndex] = useState(0);
+  // ...
+```
+
+--------------------------------
+
+### EffectAlbums component using useEffect for data fetching
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/reference/react/Suspense.md
+
+This component fetches albums using useEffect and useState. Suspense cannot detect this fetch, so its fallback never shows and the list remains empty until data arrives.
+
+```js
+import { useState, useEffect } from 'react';
+import { fetchData } from './data.js';
+
+export default function EffectAlbums({ artistId }) {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    let active = true;
+    fetchData(`/${artistId}/albums`).then(result => {
+      if (active) {
+        setAlbums(result);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [artistId]);
+
+  // Suspense can't see this fetch, so its fallback never
+  // shows. The list stays empty until the data arrives.
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+--------------------------------
+
+### Declare independent state and Effects before extraction
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/learn/reusing-logic-with-custom-hooks.md
+
+Components declare duplicate `useState` and `useEffect` logic independently before extracting it into a custom Hook.
+
+```javascript
+function StatusBar() {
+  const [isOnline, setIsOnline] = useState(true);
+  useEffect(() => {
+    // ...
+  }, []);
+  // ...
+}
+
+function SaveButton() {
+  const [isOnline, setIsOnline] = useState(true);
+  useEffect(() => {
+    // ...
+  }, []);
+  // ...
+}
+```
+
+--------------------------------
+
+### Synchronize state with props using a single fetch in useEffect
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/learn/removing-effect-dependencies.md
+
+Synchronizes the `cities` state with the network whenever the `country` prop changes. Uses a cleanup `ignore` flag to avoid race conditions.
+
+```javascript
+function ShippingForm({ country }) {
+  const [cities, setCities] = useState(null);
+  const [city, setCity] = useState(null);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch(`/api/cities?country=${country}`)
+      .then(response => response.json())
+      .then(json => {
+        if (!ignore)
+          setCities(json);
+      });
+    return () => {
+      ignore = true;
+    };
+  }, [country]); // ✅ All dependencies declared
+
+  // ...
+```
+
+--------------------------------
+
+### Calculate derived data directly during rendering
+
+Source: https://github.com/reactjs/react.dev/blob/main/src/content/learn/you-might-not-need-an-effect.md
+
+Simplifies the TodoList component by removing redundant useState and useEffect calls, deriving activeTodos and visibleTodos directly during rendering.
+
+```js
+import { useState } from 'react';
+import { initialTodos, createTodo } from './todos.js';
+
+export default function TodoList() {
+  const [todos, setTodos] = useState(initialTodos);
+  const [showActive, setShowActive] = useState(false);
+  const activeTodos = todos.filter(todo => !todo.completed);
+  const visibleTodos = showActive ? activeTodos : todos;
+
+  return (
+    <>
+      <label>
+        <input
+          type="checkbox"
+          checked={showActive}
+          onChange={e => setShowActive(e.target.checked)}
+        />
+        Show only active todos
+      </label>
+      <NewTodo onAdd={newTodo => setTodos([...todos, newTodo])} />
+      <ul>
+        {visibleTodos.map(todo => (
+          <li key={todo.id}>
+            {todo.completed ? <s>{todo.text}</s> : todo.text}
+          </li>
+        ))}
+      </ul>
+      <footer>
+        {activeTodos.length} todos left
+      </footer>
+    </>
+  );
+}
+
+function NewTodo({ onAdd }) {
+  const [text, setText] = useState('');
+
+  function handleAddClick() {
+    setText('');
+    onAdd(createTodo(text));
+  }
+
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <button onClick={handleAddClick}>
+        Add
+      </button>
+    </>
+  );
+}
+```
+
+```js
+let nextId = 0;
+
+export function createTodo(text, completed = false) {
+  return {
+    id: nextId++,
+    text,
+    completed
+  };
+}
+
+export const initialTodos = [
+  createTodo('Get apples', true),
+  createTodo('Get oranges', true),
+  createTodo('Get carrots'),
+];
+```
+
+```css
+label { display: block; }
+input { margin-top: 10px; }
+```
+
+---- FIM DA RESPOSTA BRUTA ----

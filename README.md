@@ -56,7 +56,22 @@ public/
     ├── bg-desktop-light.png
     ├── bg-mobile.png
     └── bg-mobile-light.png
+tests/
+└── devlinks.spec.js          # testes end-to-end com Playwright
+docs/
+├── prints/                   # prints do site publicado (desktop e mobile)
+└── evidencias/               # provas das consultas e execuções das ferramentas
 ```
+
+## Como testar
+
+```bash
+npm run test:e2e
+```
+
+Os testes usam Playwright com o Chrome já instalado no computador
+(`channel: 'chrome'`), então não é preciso baixar navegadores. O Vite sobe
+automaticamente e os cenários rodam em `1440 × 1024` e `360 × 800`.
 
 ## Prints
 
@@ -104,10 +119,24 @@ O rodapé contém o texto definido pelo responsável do projeto:
 - Um script inline em `index.html` aplica o tema salvo antes do React carregar,
   evitando o flash de tema incorreto.
 
+## Evidências das ferramentas
+
+As provas de uso das ferramentas ficam em `docs/evidencias/`:
+
+- **Context7** — [`docs/evidencias/context7.md`](docs/evidencias/context7.md):
+  consulta real à documentação oficial do React sobre `useState`, `useEffect` e
+  `localStorage`, com data, endpoint e resposta bruta em
+  [`context7-react-raw.txt`](docs/evidencias/context7-react-raw.txt).
+- **Playwright** — [`docs/evidencias/playwright.md`](docs/evidencias/playwright.md):
+  execução dos testes end-to-end, com a saída do terminal em
+  [`playwright-run.txt`](docs/evidencias/playwright-run.txt) e capturas geradas
+  pelos próprios testes.
+
 ## Validação realizada
 
 - `npm run build`: concluído sem erros.
 - `npm run lint`: concluído sem avisos ou erros.
+- `npm run test:e2e`: **6 testes aprovados** (3 cenários × 2 viewports).
 - Navegador: página carregada sem erros no console e sem requisições com falha.
 - Lighthouse: 100 em acessibilidade, boas práticas e SEO.
 - Viewports verificados: `1440 × 1024` (desktop) e `360 × 800` (mobile), nos temas
@@ -123,8 +152,9 @@ O rodapé contém o texto definido pelo responsável do projeto:
 
 ### Limitações
 
-- Não há Playwright MCP configurado no ambiente. A validação foi feita com o
-  navegador integrado e com Chrome headless via CDP nos tamanhos exatos acima.
+- O ambiente não tem os MCPs de Context7 e Playwright configurados no OpenCode.
+  Por isso as evidências foram geradas com a API pública do Context7 e com o
+  pacote oficial `@playwright/test`, que são as mesmas fontes usadas pelos MCPs.
 - O texto do rodapé do frame do Figma estava ambíguo na renderização/OCR. Foi
   usado o texto definido pelo responsável do projeto.
 - Os links de curso, e-book, Instagram e o link do rodapé usam destinos públicos
