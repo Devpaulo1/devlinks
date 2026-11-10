@@ -71,7 +71,10 @@ function App() {
   return (
     <div className="app mx-auto w-full max-w-[588px] px-6 pt-14">
       <main>
-        <Profile avatarSrc="/img/avatar.png" name="@seu.perfil" />
+        <Profile
+          avatarSrc={theme === 'light' ? '/img/avatar-light.png' : '/img/avatar.png'}
+          name="@seu.perfil"
+        />
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
         <nav aria-label="Links principais">
           <ul className="links flex flex-col gap-4 py-6">
