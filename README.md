@@ -54,7 +54,7 @@ src/
 public/
 └── img/
     ├── avatar.jpg
-    ├── avatar-light.png
+    ├── avatar-light.jpg
     ├── bg-desktop.png
     ├── bg-desktop-light.png
     ├── bg-mobile.png

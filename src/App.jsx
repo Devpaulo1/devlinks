@@ -72,7 +72,7 @@ function App() {
     <div className="app mx-auto w-full max-w-[588px] px-6 pt-14">
       <main>
         <Profile
-          avatarSrc={theme === 'light' ? '/img/avatar-light.png' : '/img/avatar.jpg'}
+          avatarSrc={theme === 'light' ? '/img/avatar-light.jpg' : '/img/avatar.jpg'}
           name="@dev.paulo1"
         />
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
