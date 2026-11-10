@@ -58,6 +58,22 @@ public/
     └── bg-mobile-light.png
 ```
 
+## Prints
+
+Capturas do site publicado em `https://devlinks-sigma-eight.vercel.app/`.
+
+### Desktop — 1440 × 1024
+
+![DevLinks no desktop com tema escuro](docs/prints/desktop-dark.png)
+
+![DevLinks no desktop com tema claro](docs/prints/desktop-light.png)
+
+### Mobile — 360 × 800
+
+![DevLinks no mobile com tema escuro](docs/prints/mobile-dark.png)
+
+![DevLinks no mobile com tema claro](docs/prints/mobile-light.png)
+
 ## Links e redes sociais
 
 Os destinos ficam centralizados em `src/App.jsx`, nos arrays `links` e
@@ -111,5 +127,5 @@ O rodapé contém o texto definido pelo responsável do projeto:
   navegador integrado e com Chrome headless via CDP nos tamanhos exatos acima.
 - O texto do rodapé do frame do Figma estava ambíguo na renderização/OCR. Foi
   usado o texto definido pelo responsável do projeto.
-- Os destinos reais dos links ainda não foram fornecidos; por isso permanecem
-  como `#` até a substituição.
+- Os links de curso, e-book, Instagram e o link do rodapé usam destinos públicos
+  provisórios, conforme autorizado pelo responsável do projeto.
