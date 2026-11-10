@@ -13,19 +13,34 @@ import './App.css'
 
 const THEME_STORAGE_KEY = 'devlinks-theme'
 
-// TODO: substituir os hrefs provisórios pelas URLs reais fornecidas pelo responsável.
+// Os links de curso, e-book e portfólio usam destinos públicos provisórios
+// indicados pelo responsável. Substitua quando as URLs definitivas existirem.
 const links = [
-  { id: 'curso', label: 'Inscreva-se no Curso', href: '#' },
-  { id: 'ebook', label: 'Baixe meu e-book', href: '#' },
-  { id: 'portfolio', label: 'Veja meu portfólio', href: '#' },
-  { id: 'meu-curso', label: 'Conheça meu curso', href: '#' },
+  {
+    id: 'curso',
+    label: 'Inscreva-se no Curso',
+    href: 'https://www.rocketseat.com.br/formacao/fullstack',
+  },
+  { id: 'ebook', label: 'Baixe meu e-book', href: 'https://www.rocketseat.com.br/ebook' },
+  { id: 'portfolio', label: 'Veja meu portfólio', href: 'https://github.com/Devpaulo1' },
+  { id: 'meu-curso', label: 'Conheça meu curso', href: 'https://www.rocketseat.com.br/' },
 ]
 
 const socialLinks = [
-  { id: 'github', label: 'GitHub', href: '#', Icon: GithubIcon },
-  { id: 'instagram', label: 'Instagram', href: '#', Icon: InstagramIcon },
-  { id: 'youtube', label: 'YouTube', href: '#', Icon: YoutubeIcon },
-  { id: 'linkedin', label: 'LinkedIn', href: '#', Icon: LinkedinIcon },
+  { id: 'github', label: 'GitHub', href: 'https://github.com/Devpaulo1', Icon: GithubIcon },
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    href: 'https://www.instagram.com/rocketseat/',
+    Icon: InstagramIcon,
+  },
+  { id: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@KillRockts', Icon: YoutubeIcon },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/devpaulo1/',
+    Icon: LinkedinIcon,
+  },
 ]
 
 function getInitialTheme() {

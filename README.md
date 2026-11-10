@@ -58,21 +58,24 @@ public/
     └── bg-mobile-light.png
 ```
 
-## Links provisórios
+## Links e redes sociais
 
-Os quatro links principais e os quatro links sociais estão com `href="#"` em
-`src/App.jsx`, aguardando as URLs reais. Substitua apenas os valores de `href`:
+Os destinos ficam centralizados em `src/App.jsx`, nos arrays `links` e
+`socialLinks`. Para trocar um destino, altere apenas o valor de `href`.
 
-```js
-const links = [
-  { id: 'curso', label: 'Inscreva-se no Curso', href: '#' },
-  // ...
-]
-```
+Redes sociais preenchidas:
+
+- GitHub: `https://github.com/Devpaulo1`
+- LinkedIn: `https://www.linkedin.com/in/devpaulo1/`
+- YouTube: `https://www.youtube.com/@KillRockts`
+- Instagram: `https://www.instagram.com/rocketseat/` (destino público provisório)
+
+Os links principais de curso, e-book e portfólio também usam destinos públicos
+provisórios indicados pelo responsável. Substitua-os quando as URLs definitivas
+forem definidas.
 
 `LinkButton` e `SocialLinks` adicionam automaticamente `target="_blank"` e
 `rel="noopener noreferrer"` quando o `href` começa com `http://` ou `https://`.
-Links internos ou provisórios (`#`) continuam abrindo na mesma aba.
 
 O rodapé contém o texto definido pelo responsável do projeto:
 `Feito com ♥ pela Rocketseat`, com link para o site da Rocketseat.
