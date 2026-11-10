@@ -4,6 +4,9 @@ Página de links pessoais desenvolvida com React e Vite, reproduzindo as referê
 desktop e mobile do Figma. A aplicação possui alternância entre os temas escuro e
 claro, com a preferência salva no `localStorage`.
 
+- **Site publicado:** https://devlinks-sigma-eight.vercel.app/
+- **Repositório:** https://github.com/Devpaulo1/devlinks
+
 ## Stack
 
 - React 19
@@ -14,7 +17,7 @@ claro, com a preferência salva no `localStorage`.
 
 ## Como executar
 
-Pré-requisito: Node.js instalado.
+Pré-requisito: Node.js `^20.19.0` ou `>=22.12.0` (exigência do Vite 8).
 
 ```bash
 npm install
@@ -61,6 +64,8 @@ tests/
 docs/
 ├── prints/                   # prints do site publicado (desktop e mobile)
 └── evidencias/               # provas das consultas e execuções das ferramentas
+playwright.config.js          # configuração dos testes E2E
+opencode.json                 # MCPs do Context7 e do Playwright
 ```
 
 ## Como testar
@@ -101,9 +106,10 @@ Redes sociais preenchidas:
 - YouTube: `https://www.youtube.com/@KillRockts`
 - Instagram: `https://www.instagram.com/rocketseat/` (destino público provisório)
 
-Os links principais de curso, e-book e portfólio também usam destinos públicos
-provisórios indicados pelo responsável. Substitua-os quando as URLs definitivas
-forem definidas.
+Os links principais de curso, e-book e o botão "Conheça meu curso" também usam
+destinos públicos provisórios indicados pelo responsável. O botão "Veja meu
+portfólio" aponta para o GitHub do responsável. Substitua os provisórios quando
+as URLs definitivas forem definidas.
 
 `LinkButton` e `SocialLinks` adicionam automaticamente `target="_blank"` e
 `rel="noopener noreferrer"` quando o `href` começa com `http://` ou `https://`.
@@ -145,7 +151,6 @@ configurados em [`opencode.json`](opencode.json).
 - `npm run test:e2e`: **6 testes aprovados** (3 cenários × 2 viewports).
 - Playwright MCP: roteiro completo executado pelo agente no navegador, com
   `0` erros e `0` avisos no console e nenhuma requisição com falha.
-- Navegador: página carregada sem erros no console e sem requisições com falha.
 - Lighthouse: 100 em acessibilidade, boas práticas e SEO.
 - Viewports verificados: `1440 × 1024` (desktop) e `360 × 800` (mobile), nos temas
   escuro e claro, sem rolagem horizontal.
@@ -160,10 +165,9 @@ configurados em [`opencode.json`](opencode.json).
 
 ### Limitações
 
-- Os MCPs de Context7 e Playwright estão configurados no `opencode.json` e
-  foram usados nesta validação. Quem clonar o projeto precisa ter o OpenCode
-  para aproveitar os mesmos servidores; os testes `npm run test:e2e` funcionam
-  sem MCP nenhum.
+- As evidências de Context7 e Playwright foram geradas pelos MCPs configurados
+  em `opencode.json`, dentro do OpenCode. Para repetir os mesmos comandos é
+  preciso ter o OpenCode configurado; os testes `npm run test:e2e` rodam sem MCP.
 - O texto do rodapé do frame do Figma estava ambíguo na renderização/OCR. Foi
   usado o texto definido pelo responsável do projeto.
 - Os links de curso, e-book, Instagram e o link do rodapé usam destinos públicos
