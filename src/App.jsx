@@ -1,121 +1,91 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { useEffect, useState } from 'react'
+import LinkButton from './components/LinkButton'
+import Profile from './components/Profile'
+import SocialLinks from './components/SocialLinks'
+import ThemeToggle from './components/ThemeToggle'
+import {
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  YoutubeIcon,
+} from './components/icons'
 import './App.css'
 
+const THEME_STORAGE_KEY = 'devlinks-theme'
+
+// TODO: substituir os hrefs provisórios pelas URLs reais fornecidas pelo responsável.
+const links = [
+  { id: 'curso', label: 'Inscreva-se no Curso', href: '#' },
+  { id: 'ebook', label: 'Baixe meu e-book', href: '#' },
+  { id: 'portfolio', label: 'Veja meu portfólio', href: '#' },
+  { id: 'meu-curso', label: 'Conheça meu curso', href: '#' },
+]
+
+const socialLinks = [
+  { id: 'github', label: 'GitHub', href: '#', Icon: GithubIcon },
+  { id: 'instagram', label: 'Instagram', href: '#', Icon: InstagramIcon },
+  { id: 'youtube', label: 'YouTube', href: '#', Icon: YoutubeIcon },
+  { id: 'linkedin', label: 'LinkedIn', href: '#', Icon: LinkedinIcon },
+]
+
+function getInitialTheme() {
+  try {
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+    return storedTheme === 'light' ? 'light' : 'dark'
+  } catch {
+    return 'dark'
+  }
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, setTheme] = useState(getInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+    } catch {
+      // Sem localStorage, o tema ainda funciona durante a sessão.
+    }
+  }, [theme])
+
+  function toggleTheme() {
+    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div className="app">
+      <main>
+        <Profile avatarSrc="/img/avatar.png" name="@seu.perfil" />
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        <nav aria-label="Links principais">
+          <ul className="links">
+            {links.map(({ id, label, href }) => (
+              <li key={id}>
+                <LinkButton href={href}>{label}</LinkButton>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <SocialLinks links={socialLinks} />
+      </main>
+      <footer className="footer">
+        Feito com{' '}
+        <span role="img" aria-label="amor">
+          ♥
+        </span>{' '}
+        pela{' '}
+        <a
+          className="footer__link"
+          href="https://rocketseat.com.br/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          Rocketseat
+        </a>
+      </footer>
+    </div>
   )
 }
 
