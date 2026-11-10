@@ -121,22 +121,30 @@ O rodapé contém o texto definido pelo responsável do projeto:
 
 ## Evidências das ferramentas
 
-As provas de uso das ferramentas ficam em `docs/evidencias/`:
+As provas de uso das ferramentas ficam em `docs/evidencias/`. Os MCPs estão
+configurados em [`opencode.json`](opencode.json).
 
-- **Context7** — [`docs/evidencias/context7.md`](docs/evidencias/context7.md):
-  consulta real à documentação oficial do React sobre `useState`, `useEffect` e
-  `localStorage`, com data, endpoint e resposta bruta em
+- **Context7 MCP** — [`docs/evidencias/context7-mcp.md`](docs/evidencias/context7-mcp.md):
+  consultas feitas pelo agente com `resolve-library-id` e `query-docs` na
+  documentação oficial do React (`useState`, `useEffect` e `localStorage`).
+  A resposta bruta da API está em
   [`context7-react-raw.txt`](docs/evidencias/context7-react-raw.txt).
-- **Playwright** — [`docs/evidencias/playwright.md`](docs/evidencias/playwright.md):
-  execução dos testes end-to-end, com a saída do terminal em
-  [`playwright-run.txt`](docs/evidencias/playwright-run.txt) e capturas geradas
-  pelos próprios testes.
+- **Playwright MCP** — [`docs/evidencias/playwright-mcp.md`](docs/evidencias/playwright-mcp.md):
+  roteiro completo executado pelo agente no navegador (tema, persistência,
+  links, teclado, mobile/desktop e console), com prints em
+  `docs/evidencias/mcp-*.png` e artefatos brutos em
+  `docs/evidencias/playwright-mcp/`.
+- **Testes automatizados** — [`docs/evidencias/playwright.md`](docs/evidencias/playwright.md):
+  execução de `npm run test:e2e` com **6 testes aprovados**, saída do terminal em
+  [`playwright-run.txt`](docs/evidencias/playwright-run.txt).
 
 ## Validação realizada
 
 - `npm run build`: concluído sem erros.
 - `npm run lint`: concluído sem avisos ou erros.
 - `npm run test:e2e`: **6 testes aprovados** (3 cenários × 2 viewports).
+- Playwright MCP: roteiro completo executado pelo agente no navegador, com
+  `0` erros e `0` avisos no console e nenhuma requisição com falha.
 - Navegador: página carregada sem erros no console e sem requisições com falha.
 - Lighthouse: 100 em acessibilidade, boas práticas e SEO.
 - Viewports verificados: `1440 × 1024` (desktop) e `360 × 800` (mobile), nos temas
@@ -152,9 +160,10 @@ As provas de uso das ferramentas ficam em `docs/evidencias/`:
 
 ### Limitações
 
-- O ambiente não tem os MCPs de Context7 e Playwright configurados no OpenCode.
-  Por isso as evidências foram geradas com a API pública do Context7 e com o
-  pacote oficial `@playwright/test`, que são as mesmas fontes usadas pelos MCPs.
+- Os MCPs de Context7 e Playwright estão configurados no `opencode.json` e
+  foram usados nesta validação. Quem clonar o projeto precisa ter o OpenCode
+  para aproveitar os mesmos servidores; os testes `npm run test:e2e` funcionam
+  sem MCP nenhum.
 - O texto do rodapé do frame do Figma estava ambíguo na renderização/OCR. Foi
   usado o texto definido pelo responsável do projeto.
 - Os links de curso, e-book, Instagram e o link do rodapé usam destinos públicos
