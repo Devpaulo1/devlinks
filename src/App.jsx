@@ -9,7 +9,6 @@ import {
   LinkedinIcon,
   YoutubeIcon,
 } from './components/icons'
-import './App.css'
 
 const THEME_STORAGE_KEY = 'devlinks-theme'
 
@@ -70,12 +69,12 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="app mx-auto w-full max-w-[588px] px-6 pt-14">
       <main>
         <Profile avatarSrc="/img/avatar.png" name="@seu.perfil" />
         <ThemeToggle theme={theme} onToggle={toggleTheme} />
         <nav aria-label="Links principais">
-          <ul className="links">
+          <ul className="links flex flex-col gap-4 py-6">
             {links.map(({ id, label, href }) => (
               <li key={id}>
                 <LinkButton href={href}>{label}</LinkButton>
@@ -85,14 +84,14 @@ function App() {
         </nav>
         <SocialLinks links={socialLinks} />
       </main>
-      <footer className="footer">
+      <footer className="footer py-6 text-center text-sm leading-6">
         Feito com{' '}
         <span role="img" aria-label="amor">
           ♥
         </span>{' '}
         pela{' '}
         <a
-          className="footer__link"
+          className="footer__link rounded-xs no-underline outline-offset-2 outline-text hover:underline focus-visible:outline-2 focus-visible:outline-text"
           href="https://rocketseat.com.br/"
           target="_blank"
           rel="noopener noreferrer"

@@ -1,3 +1,22 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens do Figma (AGENTS.md, seção 6.1).
+  As variáveis mudam conforme o tema via `:root[data-theme]`, e o
+  `@theme inline` as expõe como classes utilitárias (bg-surface,
+  border-stroke, text-text, ...). O `inline` é necessário para que as
+  utilitárias referenciem a variável em vez de copiar o valor fixo.
+*/
+@theme inline {
+  --font-sans:
+    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-text: var(--text-color);
+  --color-stroke: var(--stroke-color);
+  --color-surface: var(--surface-color);
+  --color-surface-hover: var(--surface-hover-color);
+  --color-highlight: var(--highlight-color);
+}
+
 :root {
   color-scheme: light;
   --text-color: #000000;
@@ -30,54 +49,27 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@layer base {
+  html {
+    min-width: 320px;
+    background-color: #121214;
+  }
 
-html {
-  min-width: 320px;
-  background-color: #121214;
-}
+  :root[data-theme='light'] {
+    background-color: #f4f4f5;
+  }
 
-:root[data-theme='light'] {
-  background-color: #f4f4f5;
-}
+  body {
+    min-height: 100svh;
+    background: var(--bg-url) no-repeat top center / cover;
+    color: var(--text-color);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body {
-  min-height: 100svh;
-  margin: 0;
-  background: var(--bg-url) no-repeat top center / cover;
-  color: var(--text-color);
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  min-height: 100svh;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-button,
-a {
-  font: inherit;
-}
-
-a {
-  color: inherit;
-}
-
-:focus-visible {
-  outline: 2px solid var(--text-color);
-  outline-offset: 2px;
+  #root {
+    min-height: 100svh;
+  }
 }

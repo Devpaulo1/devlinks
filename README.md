@@ -44,8 +44,7 @@ npm run lint
 ```text
 src/
 ├── App.jsx                 # composição da página, dados e estado do tema
-├── App.css                 # layout do perfil, botões, redes sociais e rodapé
-├── index.css               # tokens de cor, fundos, reset e tipografia
+├── index.css               # Tailwind, tokens de cor (via @theme inline), fundos e base
 └── components/
     ├── Profile.jsx         # avatar e identificação
     ├── ThemeToggle.jsx     # alternância de tema acessível
